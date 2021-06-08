@@ -252,7 +252,8 @@ var PostListItem = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      users: []
+      users: [],
+      showmodal: false
     };
     _this.showmodal = _this.showmodal.bind(_assertThisInitialized(_this));
     _this.hidemodal = _this.hidemodal.bind(_assertThisInitialized(_this));
@@ -275,27 +276,29 @@ var PostListItem = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "showmodal",
-    value: function showmodal() {
-      var _this3 = this;
-
+    value: function showmodal(e) {
       document.body.style.backgroundColor = '#4c8086';
-      this.setState({
-        showmodal: true
-      }, function () {
-        document.addEventListener('click', _this3.hidemodal);
-      });
+      var post_title = document.getElementById("title-id");
+
+      if (post_title.className) {
+        this.hidemodal;
+      } else {
+        post_title.classList.add("add_className");
+        this.setState({
+          showmodal: true
+        });
+      }
     } // show or hide modal when onClick{} event is triggered 
 
   }, {
     key: "hidemodal",
     value: function hidemodal() {
-      var _this4 = this;
-
       document.body.style.backgroundColor = '#7eb5bb';
       this.setState({
         showmodal: false
       }, function () {
-        document.removeEventListener('click', _this4.hidemodal);
+        var post_title = document.getElementById("title-id");
+        post_title.classList.remove("add_className");
       });
     }
   }, {
@@ -316,34 +319,38 @@ var PostListItem = /*#__PURE__*/function (_React$Component) {
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "post-title",
+        className: "post-title"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        id: "title-id",
         onClick: this.showmodal
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        id: "title-id"
-      }, id, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        id: "title"
+      }, id, "."), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        id: "title",
+        onClick: this.showmodal
       }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.showmodal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal",
+        className: "middle_layer",
         onClick: this.hidemodal
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "modal_id",
+        className: "modal"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "title-body"
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "part3"
       }, " Author :"), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "part4"
-      }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "title-body"
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "part3"
       }, " CatchPhrase :"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "part4"
-      }, catchPhrase)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, catchPhrase)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "title-body"
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "part3"
       }, " Title :"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "part4"
-      }, title), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, title), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "title-body"
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "part3"
@@ -351,7 +358,7 @@ var PostListItem = /*#__PURE__*/function (_React$Component) {
         className: "part4"
       }, " ", body))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "butten-close",
-        onClick: this.showmodal
+        onClick: this.hidemodal
       }, "X Close")) : null)));
     }
   }]);
